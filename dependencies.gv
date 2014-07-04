@@ -1,0 +1,88 @@
+digraph dependencies
+{
+    node [shape=record,label="{}"];
+
+    afs [label="{drivers/abstract_file_system"
+              +"|"
+              +"|"
+              +"TODO FILE* fopen(filename);\l"
+              +"TODO int fclose(FILE*);\l"
+              +"TODO int cd(filename);\l"
+              +"}"];
+
+    cfs [label="{drivers/concrete_file_system"
+              +"|"
+              +"|"
+              +"TODO find(source, size, destination);\l"
+              +"TODO open(source, size, destination);\l"
+              +"TODO close(source, size, destination);\l"
+              +"}"];
+
+    sd [label="{drivers/sd_card"
+             +"|"
+             +"|"
+             +"TODO sd_read(source, size, destination);\l"
+             +"TODO sd_write(source, size, destination);\l"
+             +"}"];
+
+    mmu [label="{drivers/memory_management"
+              +"|"
+              +"|"
+              +"TODO mmu_map(virt_addr, phys_addr, size, permissions);\l"
+              +"TODO mmu_new_frame(virt_addr, size, permissions);\l"
+              +"TODO load_table(base_addr);\l"
+              +"}"];
+
+    syscalls [label="{system_calls"
+                   +"|"
+                   +"|"
+                   +"TODO"
+                   +"}"];
+
+    arm_timer [label="{drivers/arm_timer\n"
+                     +"|"
+                     +"|"
+                     +"uint32_t timer_init(uint32_t interval_count, uint8_t prescale);\l"
+                     +"TODO uint32_t sleep(uint32_t interval_count);\l"
+                     +"}"];
+
+    uart [label="{drivers/uart\n"
+               +"|"
+               +"|"
+               +"uint32_t uart_init();\l"
+               +"void uart_putc(uint8_t char);\l"
+               +"void uart_puts(const char *string);\l"
+               +"void uart_puthex(uint32_t num);\l"
+               +"void uart_putbin(uint32_t num);\l"
+               +"void uart_putdec(uint32_t num);\l"
+               +"void uart_putsgn(int32_t  num);\l"
+               +"uint8_t uart_getc();\l"
+               +"}"];
+
+    gpio [label="{drivers/gpio"
+               +"|"
+               +"|"
+               +"uint32_t set_GPIO_function(uint32_t pin, uint8_t fn );\l"
+               +"uint32_t set_GPIO_pull(uint32_t pin, uint8_t pull );\l"
+               +"}"];
+
+    exceptions [label="{drivers/exceptions\n"
+                     +"|"
+                     +"irq_handler_t: void-\>void\l"
+                     +"|"
+                     +"uint32_t exceptions_init(); /* asm */\l"
+                     +"uint32_t add_irq_handler(uint32_t irq_no, irq_handler_t handler);\l"
+                     +"uint32_t del_irq_handler(uint32_t irq_no);\l"
+                     +"}"];
+
+/*------------------------------------------*/
+
+    mmu -> exceptions;
+    syscalls -> exceptions;
+    syscalls -> gpio;
+    arm_timer -> exceptions;
+    uart -> gpio;
+    sd -> gpio;
+    afs -> sd [arrowhead=tee];
+    afs -> cfs [arrowhead=tee];
+}

@@ -1,0 +1,6 @@
+[1] ARM1176JZF-S Technical Reference Manual
+[2] BCM2835 ARM Peripherals
+[3] ARM Compiler Toolchain, Developing Software for ARM Processors
+[4] https://stackoverflow.com/questions/261419/arm-to-c-calling-convention-registers-to-save
+[5] http://www.jamesmolloy.co.uk/tutorial_html/index.html
+[6] ARM Compiler Toolchain, armccc user guide
