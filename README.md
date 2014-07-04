@@ -9,4 +9,17 @@ The next thing to do with the project would be:
 * Improve English
 * Improve typography
 
-The last two points should not be ignored, especially given that this whole project is also a (perhaps somewhat lacking) attempt at literate programming. It also needs typographic work as I am not really familiar with plain TeX or good typographic practices at the moment.
+The last two points should not be ignored, especially given that this whole project is also a (perhaps somewhat lacking) attempt at literate programming. It also needs typographic work as I am not really familiar with plain TeX or good typographic practices at the moment. Also, don't expect caches for the moment, that is second year material for me.
+
+Compilation
+-----------
+You need the following software
+
+* Gnu Make (perhaps others work)
+* Shell with the `test` builtin (for make)
+* CWEB (included in TeXlive)
+* (plain) TeX (e.g. pdftex to make PDF files)
+* arm-none-eabi-{gcc, ld, objcopy} (used GCC 4.9.0 and binutils 2.24, not sure about other cross compilers, this depends on calling assembly from C and vice versa, so if your compiler does name-mangling, you may have to do a bit of renaming)
+* find (used GNU findutils)
+
+Just running `make` ought to work, with the caveat that you may need to run it twice, as Make caches the directories and in the first round we generate the source files from the CWEB files (the reason I am not using patterns for the source files is that some CWEB files generate source files not directly related by name).
