@@ -9,4 +9,4 @@ The next thing to do with the project would be:
 * Improve English
 * Improve typography
 
-The last point should not be ignored, especially given that this whole project is also a (perhaps somewhat lacking) attempt at literate programming. It also needs typographic work as I am not really familiar with plain TeX or good typographic practices at the moment.
+The last two points should not be ignored, especially given that this whole project is also a (perhaps somewhat lacking) attempt at literate programming. It also needs typographic work as I am not really familiar with plain TeX or good typographic practices at the moment.
